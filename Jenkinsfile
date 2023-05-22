@@ -5,7 +5,7 @@ pipeline {
         stage('Checkout') {
             steps {
                 // Checkout the repository
-                git 'https://github.com/kasiemobi/SamTechworld'
+                git 'https://github.com/kasiemobi/SamTechworld.git'
             }
         }
         

@@ -31,7 +31,9 @@ pipeline {
         stage('Build Docker Image') {
             steps {
                 // Build Docker image using the Dockerfile
-                sh 'docker build -t my-image-name -f Home/Downloads/Docker .'
+                sh 'docker build -t my-image-name -f kasiemobi /
+SamTechworld
+.'
             }
         }
         

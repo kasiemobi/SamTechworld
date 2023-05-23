@@ -11,10 +11,15 @@ pipeline {
         
         stage('Build') {
             steps {
-                // Build the Java application
-                sh 'mvn clean install'
-            }
-        }
+    // Set up JDK (if necessary) - Adjust the JDK name according to your Jenkins configuration
+    // tools {
+    //   jdk 'JDK8'
+    // }
+
+    // Build the Java project using Maven
+    sh 'mvn clean install'
+  }
+}
         
         stage('Test') {
             steps {

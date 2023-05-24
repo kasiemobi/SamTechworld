@@ -1,6 +1,6 @@
 pipeline {
     agent any
-
+    
     stages {
         stage('Checkout') {
             steps {
@@ -8,19 +8,14 @@ pipeline {
                 checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kasiemobi/SamTechworld.git']])
             }
         }
-
+        
         stage('Build') {
             steps {
-                // Set up JDK (if necessary) - Adjust the JDK name according to your Jenkins configuration
-                // tools {
-                //   jdk 'JDK8'
-                // }
-
-                // Build the Java project using Maven
+                // Build the Java application
                 sh 'mvn clean install'
             }
         }
-
+        
         stage('Test') {
             steps {
                 // Run tests
@@ -28,15 +23,6 @@ pipeline {
             }
         }
         
- stage('Build Docker image') {
-            steps {
-                script {
-                    // Build the Docker image
-                    docker.build('my-image-name')
-                }
-            }
-        }
-
         stage('Deploy') {
             steps {
                 // Deploy the application

@@ -23,6 +23,15 @@ pipeline {
             }
         }
         
+        stage('Build Docker Image') {
+            steps {
+                // Build the Docker image
+                script {
+                    docker.build('my-image-name', '-f Dockerfile .')
+                }
+            }
+        }
+        
         stage('Deploy') {
             steps {
                 // Deploy the application

@@ -27,12 +27,12 @@ pipeline {
                 sh 'mvn test'
             }
         }
-
-        stage('Build Docker Image') {
+        
+ stage('Build Docker image') {
             steps {
-                // Build Docker image using the Dockerfile from the repository
-                dir('SamTechworld') {
-                    sh 'docker build -t my-image-name -f Dockerfile .'
+                script {
+                    // Build the Docker image
+                    docker.build('my-image-name')
                 }
             }
         }

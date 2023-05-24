@@ -1,29 +1,14 @@
-# Use a base image with Java and Maven pre-installed
-FROM maven:3.8.4-openjdk-11-slim AS build
+# Base image
+FROM openjdk:11-jdk
 
-# Set the working directory in the container
+# Set the working directory
 WORKDIR /app
 
-# Copy the project's pom.xml file
-COPY pom.xml .
+# Copy the JAR file to the container
+COPY target/myApp.java /app/myApp.java
 
-# Download the project dependencies
-RUN mvn dependency:go-offline -B
+# Expose the port your application is listening on (if applicable)
+EXPOSE 8080
 
-# Copy the project source code
-COPY src ./src
-
-# Build the project
-RUN mvn package
-
-# Use a lightweight base image with Java only
-FROM openjdk:11-jre-slim
-
-# Set the working directory in the container
-WORKDIR /app
-
-# Copy the built JAR file from the previous stage
-COPY --from=build /app/target/my-project.jar .
-
-# Specify the command to run the application
-CMD ["java", "-jar", "my-project.jar"]
+# Run the application
+CMD ["java", "-jar", "myApp.java"]

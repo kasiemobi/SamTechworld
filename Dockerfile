@@ -4,20 +4,14 @@ FROM maven:3.8.4-openjdk-11-slim AS build
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the project's pom.xml file to the working directory
-COPY pom.xml .
-
-# Resolve the project dependencies (downloading dependencies only)
-RUN mvn dependency:go-offline -B
-
 # Copy the entire project source code to the working directory
-COPY src ./src
+COPY . .
 
 # Build the application
 RUN mvn package
 
 # Create a new Docker image with the built JAR file
-FROM openjdk:11-jre-slim
+FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
 
 # Set the working directory inside the container
 WORKDIR /app

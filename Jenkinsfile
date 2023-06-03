@@ -24,11 +24,17 @@ pipeline {
         }
         
         stage('Build Docker Image') {
+            agent {
+                docker {
+                    // Specify the Docker image to use for the build
+                    image 'docker:latest'
+                    // Mount the Docker socket to access the Docker daemon
+                    args '-v /var/run/docker.sock:/var/run/docker.sock'
+                }
+            }
             steps {
                 // Build the Docker image
-                script {
-                    docker.build('my-image-name', '-f Dockerfile .')
-                }
+                sh 'docker build -t my-image-name -f Dockerfile .'
             }
         }
         

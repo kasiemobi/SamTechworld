@@ -1,11 +1,17 @@
 pipeline {
+    options {
+        skipDefaultCheckout()
+        // Enable launch diagnostics
+        buildDiscarder(logRotator(artifactDaysToKeepStr: '', artifactNumToKeepStr: '', daysToKeepStr: '', numToKeepStr: '10'))
+        // ...
+    }
     agent any
     
     stages {
         stage('Checkout') {
             steps {
                 // Checkout the repository
-                checkout scmGit(branches: [[name: '*/main']], extensions: [], userRemoteConfigs: [[url: 'https://github.com/kasiemobi/SamTechworld.git']])
+                checkout scm
             }
         }
         

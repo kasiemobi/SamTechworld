@@ -24,6 +24,19 @@ pipeline {
             }
         }
         
+        stage('Build and Push Image') {
+            steps {
+                script {
+                    def imageName = "<sam8814/Techworld>"
+                    def imageTag = "<latest>"
+                    def dockerImage = "${imageName}:${imageTag}"
+                    
+                    sh "docker build -t ${dockerImage} ."
+                    sh "docker push ${dockerImage}"
+                }
+            }
+        }
+        
         stage('Build') {
             steps {
                 sh 'mvn clean install'

@@ -24,22 +24,16 @@ pipeline {
             }
         }
         
-        stage('Build and Push Image') {
+        stage('Build Image') {
             steps {
-                script {
-                    def imageName = "<samuel8814>"
-                    def imageTag = "<latest>"
-                    def dockerImage = "${imageName}:${imageTag}"
-                    
-                    sh "docker build -t ${dockerImage} ."
-                    sh "docker push ${dockerImage}"
-                }
+                sh 'docker build -t my-image:latest .'
             }
         }
         
-        stage('Build') {
+        stage('Push to Docker Hub') {
             steps {
-                sh 'mvn clean install'
+                sh 'docker tag my-image:latest samuel8814/my-image:latest'
+                sh 'docker push samuel8814/my-image:latest'
             }
         }
         

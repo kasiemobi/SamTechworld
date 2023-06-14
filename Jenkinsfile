@@ -27,7 +27,7 @@ pipeline {
         stage('Build and Push Image') {
             steps {
                 script {
-                    def imageName = "<techworld>"
+                    def imageName = "<samuel8814>"
                     def imageTag = "<latest>"
                     def dockerImage = "${imageName}:${imageTag}"
                     

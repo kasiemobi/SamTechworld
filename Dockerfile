@@ -10,8 +10,8 @@ COPY . .
 # Build the application
 RUN mvn package
 
-# Expose ports 8080 and 3080
-EXPOSE 8080 3080
+# Expose port 3080 (or the desired port)
+EXPOSE 3080
 
 # Specify the command to run when the container starts
-CMD ["java", "-jar", "target/App.jar"]
+CMD ["java", "-cp", "target/classes", "App"]

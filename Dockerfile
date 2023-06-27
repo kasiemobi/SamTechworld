@@ -10,17 +10,17 @@ COPY . .
 # Build the application
 RUN mvn package
 
-# Create a new Docker image with the built JAR file
+# Create a new Docker image with the compiled Java classes
 FROM adoptopenjdk/openjdk11:jre-11.0.11_9-alpine
 
 # Set the working directory inside the container
 WORKDIR /app
 
-# Copy the built JAR file from the previous build stage to the current stage
-COPY --from=build /app/target/my-project-1.0-SNAPSHOT.jar .
+# Copy the compiled Java classes from the previous build stage to the current stage
+COPY --from=build /app/target/classes .
 
 # Expose port 3080
 EXPOSE 3080
 
 # Specify the command to run when the container starts
-CMD ["java", "-jar", "App.java"]
+CMD ["java", "App"]

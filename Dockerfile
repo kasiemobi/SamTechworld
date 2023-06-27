@@ -14,4 +14,4 @@ RUN mvn package
 EXPOSE 3080
 
 # Specify the command to run when the container starts
-CMD ["java", "-cp", "target/classes", "App"]
+CMD ["java", "-jar", "target/my-project-1.0-SNAPSHOT.jar"]

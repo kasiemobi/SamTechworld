@@ -23,4 +23,4 @@ COPY --from=build /app/target/my-project-1.0-SNAPSHOT.jar .
 EXPOSE 3080
 
 # Specify the command to run when the container starts
-CMD ["java", "-jar", "my-project-1.0-SNAPSHOT.jar"]
+CMD ["java", "-jar", "App.java"]

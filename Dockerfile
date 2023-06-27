@@ -19,5 +19,8 @@ WORKDIR /app
 # Copy the built JAR file from the previous build stage to the current stage
 COPY --from=build /app/target/my-project-1.0-SNAPSHOT.jar .
 
+# Expose port 3080
+EXPOSE 3080
+
 # Specify the command to run when the container starts
 CMD ["java", "-jar", "my-project-1.0-SNAPSHOT.jar"]

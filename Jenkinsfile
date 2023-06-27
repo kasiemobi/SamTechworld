@@ -26,14 +26,14 @@ pipeline {
         
         stage('Build Image') {
             steps {
-                sh 'docker build -t Java-image:latest .'
+                sh 'docker build -t java-image:latest .'
             }
         }
         
         stage('Push to Docker Hub') {
             steps {
-                sh 'docker tag my-image:latest samuel8814/Java-image:latest'
-                sh 'docker push samuel8814/Java-image:latest'
+                sh 'docker tag my-image:latest samuel8814/java-image:latest'
+                sh 'docker push samuel8814/java-image:latest'
             }
         }
         
